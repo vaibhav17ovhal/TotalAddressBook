@@ -16,7 +16,15 @@ namespace TotalAddressBook
         }
         public void AddContact(Contact contact)
         {
-            contacts.Add(contact);
+            if (contacts.Contains(contact))
+            {
+                Console.WriteLine($"Contact '{contact.FirstName} {contact.LastName}' already exists in the Address Book.");
+            }
+            else
+            {
+                contacts.Add(contact);
+                Console.WriteLine($"Contact '{contact.FirstName} {contact.LastName}' added to the Address Book.");
+            }
         }
 
         public void DisplayContacts()

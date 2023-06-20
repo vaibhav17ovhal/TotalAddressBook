@@ -26,19 +26,19 @@ namespace TotalAddressBook
                 Console.WriteLine($"Address book '{name}' already exists.");
             }
         }
-        public bool DisplayAddressBook(string name)
+        public void DisplayAddressBook(string name)
         {
             if(addressBooks.ContainsKey(name))
             {
                 AddressBook book = addressBooks[name];
                 Console.WriteLine($"Address book: '{name}'");
                 book.DisplayContacts();
-                return true;
+                
             }
             else
             {
                 Console.WriteLine($"Address Book '{name}' does not exist.");
-                return false;
+                
             }
         }
         public AddressBook GetAddressBook(string name)

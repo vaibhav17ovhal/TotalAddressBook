@@ -37,48 +37,32 @@ namespace TotalAddressBook
                     case "3":
                         Console.Write("Enter the name of the Address Book to add a contact: ");
                         string addContactAddressBookName = Console.ReadLine();
-                        if(addressBookSystem.DisplayAddressBook(addContactAddressBookName))
+                        addressBookSystem.DisplayAddressBook(addContactAddressBookName);
+                        
+                        AddressBook book = addressBookSystem.GetAddressBook(addContactAddressBookName);
+                        if(book != null)
                         {
-                            AddressBook book = addressBookSystem.GetAddressBook(addContactAddressBookName);
+                            Contact contact = new Contact();
 
                             Console.Write("First Name: ");
-                            string firstName = Console.ReadLine();
-
+                            contact.FirstName = Console.ReadLine();
                             Console.Write("Last Name: ");
-                            string lastName = Console.ReadLine();
-
+                            contact.LastName = Console.ReadLine();
                             Console.Write("Address: ");
-                            string address = Console.ReadLine();
-
+                            contact.Address = Console.ReadLine();
                             Console.Write("City: ");
-                            string city = Console.ReadLine();
-
+                            contact.City = Console.ReadLine();
                             Console.Write("State: ");
-                            string state = Console.ReadLine();
-
-                            Console.Write("ZIP Code: ");
-                            string zip = Console.ReadLine();
-
+                            contact.State = Console.ReadLine();
+                            Console.Write("Zip: ");
+                            contact.Zip = Console.ReadLine();
                             Console.Write("Phone Number: ");
-                            string phoneNumber = Console.ReadLine();
-
+                            contact.PhoneNumber = Console.ReadLine();
                             Console.Write("Email: ");
-                            string email = Console.ReadLine();
+                            contact.Email = Console.ReadLine();
 
-                            Contact contact = new Contact
-                            {
-                                FirstName = firstName,
-                                LastName = lastName,
-                                Address = address,
-                                City = city,
-                                State = state,
-                                Zip = zip,
-                                PhoneNumber = phoneNumber,
-                                Email = email
-                            };
                             book.AddContact(contact);
-                            Console.WriteLine("Contact Added to the Address Book.");
-                        }
+                        }                        
                         break;
                     case "4":
                         Console.WriteLine("Quitting the program...");
