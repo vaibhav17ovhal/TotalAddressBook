@@ -157,6 +157,113 @@ namespace TotalAddressBook
 
             return contacts;
         }
+        public List<Contact> GetContactsByCity(string city)
+        {
+            List<Contact> contacts = new List<Contact>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM Contacts WHERE City = @City";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@City", city);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Contact contact = new Contact
+                    {
+                        Id = (int)reader["Id"],
+                        FirstName = (string)reader["FirstName"],
+                        LastName = (string)reader["LastName"],
+                        Address = (string)reader["Address"],
+                        City = (string)reader["City"],
+                        State = (string)reader["State"],
+                        Zip = (string)reader["Zip"],
+                        PhoneNumber = (string)reader["PhoneNumber"],
+                        Email = (string)reader["Email"],
+                        DateAdded = (DateTime)reader["DateAdded"]
+                    };
+
+                    contacts.Add(contact);
+                }
+            }
+
+            return contacts;
+        }
+
+        public int GetContactCountByCity(string city)
+        {
+            int contactCount = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT dbo.GetContactCountByCity(@City)";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@City", city);
+
+                connection.Open();
+                contactCount = (int)command.ExecuteScalar();
+            }
+
+            return contactCount;
+        }
+
+        public int GetContactCountByState(string state)
+        {
+            int contactCount = 0;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT dbo.GetContactCountByState(@State)";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@State", state);
+
+                connection.Open();
+                contactCount = (int)command.ExecuteScalar();
+            }
+
+            return contactCount;
+        }
+
+        public List<Contact> GetContactsByState(string state)
+        {
+            List<Contact> contacts = new List<Contact>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM Contacts WHERE State = @State";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@State", state);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Contact contact = new Contact
+                    {
+                        Id = (int)reader["Id"],
+                        FirstName = (string)reader["FirstName"],
+                        LastName = (string)reader["LastName"],
+                        Address = (string)reader["Address"],
+                        City = (string)reader["City"],
+                        State = (string)reader["State"],
+                        Zip = (string)reader["Zip"],
+                        PhoneNumber = (string)reader["PhoneNumber"],
+                        Email = (string)reader["Email"],
+                        DateAdded = (DateTime)reader["DateAdded"]
+                    };
+
+                    contacts.Add(contact);
+                }
+            }
+
+            return contacts;
+        }
+
+
 
     }
 }
