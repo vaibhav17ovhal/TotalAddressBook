@@ -10,135 +10,55 @@ namespace TotalAddressBook
 
             AddressBook book = new AddressBook();
 
-            Contact con1 = new Contact
+            Console.WriteLine("Add persons to the Address Book:");
+
+            while (true)
             {
-                FirstName = "Vaibhav",
-                LastName = "Ovhal",
-                Address = "Harsiddhi",
-                City = "Indore",
-                State = "M.P.",
-                Zip = "452007",
-                PhoneNumber = "9340596362",
-                Email = "vaibhavovhal15@gmail.com"
-            };
+                Console.WriteLine("Enter person details or 'q' to quit.");
 
-            Contact con2 = new Contact
-            {
-                FirstName = "Ayushi",
-                LastName = "Dubey",
-                Address = "Juni Indore",
-                City = "Indore",
-                State = "M.P.",
-                Zip = "452007",
-                PhoneNumber = "7415887847",
-                Email = "ayushidubey80@gmail.com"
-            };
-            
-            Contact con3 = new Contact
-            {
-                FirstName = "Karan",
-                LastName = "Soni",
-                Address = "Annapurna",
-                City = "Indore",
-                State = "M.P.",
-                Zip = "452012",
-                PhoneNumber = "9845631405",
-                Email = "karanS145@gmail.com"
-            };
-            Contact con4 = new Contact
-            {
-                FirstName = "Nikita",
-                LastName = "Joshi",
-                Address = "Anand Nagar",
-                City = "Pune",
-                State = "M.H.",
-                Zip = "450004",
-                PhoneNumber = "7964850069",
-                Email = "Nikki123@gmail.com"
-            };
-            Contact con5 = new Contact
-            {
-                FirstName = "Akanksha",
-                LastName = "Patidar",
-                Address = "Gandhi Nagar",
-                City = "Ahemdabad",
-                State = "G.J.",
-                Zip = "456120",
-                PhoneNumber = "9764512999",
-                Email = "PatidarA444@gmail.com"
-            };
-           
+                Console.Write("First Name: ");
+                string firstName = Console.ReadLine();
 
-            book.AddContact(con1);
-            book.AddContact(con2);
-            book.AddContact(con3);
-            book.AddContact(con4);
-            book.AddContact(con5);
+                if (firstName.ToLower() == "q")
+                    break;
 
-            book.DisplayContacts();
-            
-            Console.WriteLine("Add a new contact:");
+                Console.Write("Last Name: ");
+                string lastName = Console.ReadLine();
 
-            Contact newContact = new Contact();
+                Console.Write("Address: ");
+                string address = Console.ReadLine();
 
-            Console.Write("First Name: ");
-            newContact.FirstName = Console.ReadLine();
+                Console.Write("City: ");
+                string city = Console.ReadLine();
 
-            Console.Write("Last Name: ");
-            newContact.LastName = Console.ReadLine();
+                Console.Write("State: ");
+                string state = Console.ReadLine();
 
-            Console.Write("Address: ");
-            newContact.Address = Console.ReadLine();
+                Console.Write("ZIP Code: ");
+                string zip = Console.ReadLine();
 
-            Console.Write("City: ");
-            newContact.City = Console.ReadLine();
+                Console.Write("Phone Number: ");
+                string phoneNumber = Console.ReadLine();
 
-            Console.Write("State: ");
-            newContact.State = Console.ReadLine();
+                Console.Write("Email: ");
+                string email = Console.ReadLine();
 
-            Console.Write("ZIP Code: ");
-            newContact.Zip = Console.ReadLine();
+                Contact contact = new Contact
+                {
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Address = address,
+                    City = city,
+                    State = state,
+                    Zip = zip,
+                    PhoneNumber = phoneNumber,
+                    Email = email
+                };
 
-            Console.Write("Phone Number: ");
-            newContact.PhoneNumber = Console.ReadLine();
+                book.AddContact(contact);
+            }
 
-            Console.Write("Email: ");
-            newContact.Email = Console.ReadLine();
-
-            // Add the new contact to the address book
-            book.AddContact(newContact);
-
-            // Display all contacts again, including the newly added contact
             Console.WriteLine("\nAll Contacts:");
-            book.DisplayContacts();
-            
-            Console.WriteLine("\nEdit a contact:");
-            Console.Write("Enter the First Name: ");
-            string editFirstName = Console.ReadLine();
-
-            Console.Write("Enter the Last Name: ");
-            string editLastName = Console.ReadLine();
-
-            // Edit the contact details
-            book.EditContact(editFirstName, editLastName);
-
-            // Display all contacts again, including the updated contact
-            Console.WriteLine("\nAll Contacts after Editing:");
-            book.DisplayContacts();
-
-            // Prompt the user to delete a contact
-            Console.WriteLine("\nDelete a contact:");
-            Console.Write("Enter the First Name: ");
-            string deleteFirstName = Console.ReadLine();
-
-            Console.Write("Enter the Last Name: ");
-            string deleteLastName = Console.ReadLine();
-
-            // Delete the contact
-            book.DeleteContact(deleteFirstName, deleteLastName);
-
-            // Display all contacts again, excluding the deleted contact
-            Console.WriteLine("\nAll Contacts after Deletion:");
             book.DisplayContacts();
         }
     }
