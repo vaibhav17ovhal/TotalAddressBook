@@ -1,10 +1,12 @@
 ﻿using CsvHelper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace TotalAddressBook
 {
@@ -179,6 +181,25 @@ namespace TotalAddressBook
             else
             {
                 Console.WriteLine($"File {fileName1} does not exist.");
+            }
+        }
+
+        public void SaveAddressBookToJson(string fileName2)
+        {
+            string jsonData = JsonConvert.SerializeObject(contacts, Formatting.Indented);
+            File.WriteAllText(fileName2, jsonData);
+        }
+
+        public void LoadAddressBookFromJson(string fileName2)
+        {
+            if (File.Exists(fileName2))
+            {
+                string jsonData = File.ReadAllText(fileName2);
+                contacts = JsonConvert.DeserializeObject<List<Contact>>(jsonData);
+            }
+            else
+            {
+                Console.WriteLine($"File {fileName2} does not exist.");
             }
         }
 

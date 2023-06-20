@@ -13,6 +13,7 @@ namespace TotalAddressBook
             AddressBook book = new AddressBook();
             string fileName = "book.txt";
             string fileName1 = "book.csv";
+            string fileName2 = "book.json";
 
             Console.WriteLine("Address Book System");
             /*
@@ -122,6 +123,10 @@ namespace TotalAddressBook
                 Console.WriteLine("4. Load address book from file");
                 Console.WriteLine("5. Save address book to CSV");
                 Console.WriteLine("6. Load address book from CSV");
+                Console.WriteLine("7. Save address book to JSON");
+                Console.WriteLine("8. Load address book from JSON");
+                Console.WriteLine("9. Exit");
+
 
                 string option = Console.ReadLine();
 
@@ -180,6 +185,16 @@ namespace TotalAddressBook
                         book.LoadAddressBookFromCsv(fileName1);
                         Console.WriteLine("Address book loaded from CSV.");
                         break;
+                    case "7":
+                        book.SaveAddressBookToJson(fileName2);
+                        Console.WriteLine("Address book saved to JSON.");
+                        break;
+                    case "8":
+                        book.LoadAddressBookFromJson(fileName2);
+                        Console.WriteLine("Address book loaded from JSON.");
+                        break;
+                    case "9":
+                        return;
                     default:
                         Console.WriteLine("Invalid option. Please try again.");
                         break;
