@@ -76,6 +76,42 @@ namespace TotalAddressBook
             book.AddContact(con5);
 
             book.DisplayContacts();
+
+            Console.WriteLine("Add a new contact:");
+
+            Contact newContact = new Contact();
+
+            Console.Write("First Name: ");
+            newContact.FirstName = Console.ReadLine();
+
+            Console.Write("Last Name: ");
+            newContact.LastName = Console.ReadLine();
+
+            Console.Write("Address: ");
+            newContact.Address = Console.ReadLine();
+
+            Console.Write("City: ");
+            newContact.City = Console.ReadLine();
+
+            Console.Write("State: ");
+            newContact.State = Console.ReadLine();
+
+            Console.Write("ZIP Code: ");
+            newContact.Zip = Console.ReadLine();
+
+            Console.Write("Phone Number: ");
+            newContact.PhoneNumber = Console.ReadLine();
+
+            Console.Write("Email: ");
+            newContact.Email = Console.ReadLine();
+
+            // Add the new contact to the address book
+            book.AddContact(newContact);
+
+            // Display all contacts again, including the newly added contact
+            Console.WriteLine("\nAll Contacts:");
+            book.DisplayContacts();
+
         }
     }
 }
