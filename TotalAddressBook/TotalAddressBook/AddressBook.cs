@@ -13,15 +13,33 @@ namespace TotalAddressBook
     public class AddressBook
     {
         private List<Contact> contacts;
+        private AddressBookService addressBookService;
 
+        public AddressBook(string connectionString)
+        {
+            contacts = new List<Contact>();
+            addressBookService = new AddressBookService(connectionString);
+        }
         public AddressBook()
         {
             contacts = new List<Contact>();
         }
+
+        public List<Contact> GetContacts()
+        {
+            return contacts;
+        }
+
+        public void LoadContactsFromDatabase()
+        {
+            contacts = addressBookService.GetAllContacts();
+        }
+
         public void AddContact(Contact contact)
         {
             contacts.Add(contact);
         }
+
 
         public void DisplayContacts()
         {

@@ -10,10 +10,16 @@ namespace TotalAddressBook
 
             //AddressBookSystem addressBookSystem = new AddressBookSystem();
 
-            AddressBook book = new AddressBook();
+            string connectionString = @"Data Source = (localdb)\MSSQLLocalDB; Database = AddressBookDB; Integrated Security = True";
+            
+            AddressBook book = new AddressBook(connectionString);
             string fileName = "book.txt";
             string fileName1 = "book.csv";
             string fileName2 = "book.json";
+
+            book.LoadContactsFromDatabase();
+
+
 
             Console.WriteLine("Address Book System");
             /*
@@ -118,14 +124,16 @@ namespace TotalAddressBook
             {
                 Console.WriteLine("\nEnter an option:");
                 Console.WriteLine("1. Add a contact");
-                Console.WriteLine("2. Display contacts sorted by name");
-                Console.WriteLine("3. Save address book to file");
-                Console.WriteLine("4. Load address book from file");
-                Console.WriteLine("5. Save address book to CSV");
-                Console.WriteLine("6. Load address book from CSV");
-                Console.WriteLine("7. Save address book to JSON");
-                Console.WriteLine("8. Load address book from JSON");
-                Console.WriteLine("9. Exit");
+                //Console.WriteLine("2. Display contacts sorted by name");
+                //Console.WriteLine("3. Save address book to file");
+                //Console.WriteLine("4. Load address book from file");
+                //Console.WriteLine("5. Save address book to CSV");
+                //Console.WriteLine("6. Load address book from CSV");
+                //Console.WriteLine("7. Save address book to JSON");
+                //Console.WriteLine("8. Load address book from JSON");
+                Console.WriteLine("9. Display all contacts");
+                Console.WriteLine("10. Exit");
+                
 
 
                 string option = Console.ReadLine();
@@ -194,10 +202,30 @@ namespace TotalAddressBook
                         Console.WriteLine("Address book loaded from JSON.");
                         break;
                     case "9":
+                        DisplayContacts(book);
+                        break;
+                    case "10":
                         return;
                     default:
                         Console.WriteLine("Invalid option. Please try again.");
                         break;
+                }
+            }
+            static void DisplayContacts(AddressBook addressBook)
+            {
+                List<Contact> contacts = addressBook.GetContacts();
+
+                Console.WriteLine("Contacts:");
+                foreach (Contact contact in contacts)
+                {
+                    Console.WriteLine($"Name: {contact.FirstName} {contact.LastName}");
+                    Console.WriteLine($"Address: {contact.Address}");
+                    Console.WriteLine($"City: {contact.City}");
+                    Console.WriteLine($"State: {contact.State}");
+                    Console.WriteLine($"Zip: {contact.Zip}");
+                    Console.WriteLine($"Phone: {contact.PhoneNumber}");
+                    Console.WriteLine($"Email: {contact.Email}");
+                    Console.WriteLine();
                 }
             }
         }
