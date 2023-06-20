@@ -76,7 +76,7 @@ namespace TotalAddressBook
             book.AddContact(con5);
 
             book.DisplayContacts();
-
+            
             Console.WriteLine("Add a new contact:");
 
             Contact newContact = new Contact();
@@ -111,7 +111,20 @@ namespace TotalAddressBook
             // Display all contacts again, including the newly added contact
             Console.WriteLine("\nAll Contacts:");
             book.DisplayContacts();
+            
+            Console.WriteLine("\nEdit a contact:");
+            Console.Write("Enter the First Name: ");
+            string editFirstName = Console.ReadLine();
 
+            Console.Write("Enter the Last Name: ");
+            string editLastName = Console.ReadLine();
+
+            // Edit the contact details
+            book.EditContact(editFirstName, editLastName);
+
+            // Display all contacts again, including the updated contact
+            Console.WriteLine("\nAll Contacts after Editing:");
+            book.DisplayContacts();
         }
     }
 }
