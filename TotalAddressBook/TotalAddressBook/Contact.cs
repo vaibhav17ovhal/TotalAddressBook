@@ -32,5 +32,10 @@ namespace TotalAddressBook
             return StringComparer.OrdinalIgnoreCase.GetHashCode(FirstName) ^
                    StringComparer.OrdinalIgnoreCase.GetHashCode(LastName);
         }
+
+        public override string ToString()
+        {
+            return $"Name: {FirstName} {LastName}\nAddress: {Address}\nCity: {City}\nState: {State}\nZip: {Zip}\nPhone: {PhoneNumber}\nEmail: {Email}\n";
+        }
     }
 }

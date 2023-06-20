@@ -7,11 +7,13 @@ namespace TotalAddressBook
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Address Book\n");
-            
-            AddressBookSystem addressBookSystem = new AddressBookSystem();
+
+            //AddressBookSystem addressBookSystem = new AddressBookSystem();
+
+            AddressBook book = new AddressBook();
 
             Console.WriteLine("Address Book System");
-
+            /*
             while (true)
             {
                 Console.WriteLine("\nEnter an option:");
@@ -103,6 +105,59 @@ namespace TotalAddressBook
                     case "8":
                         Console.WriteLine("Quitting the program...");
                         return;
+                    default:
+                        Console.WriteLine("Invalid option. Please try again.");
+                        break;
+                }
+            }
+            */
+            while (true)
+            {
+                Console.WriteLine("\nEnter an option:");
+                Console.WriteLine("1. Add a contact");
+                Console.WriteLine("2. Display contacts");
+
+                string option = Console.ReadLine();
+
+                switch (option)
+                {
+                    case "1":
+                        Console.Write("Enter first name: ");
+                        string firstName = Console.ReadLine();
+                        Console.Write("Enter last name: ");
+                        string lastName = Console.ReadLine();
+                        Console.Write("Enter address: ");
+                        string address = Console.ReadLine();
+                        Console.Write("Enter city: ");
+                        string city = Console.ReadLine();
+                        Console.Write("Enter state: ");
+                        string state = Console.ReadLine();
+                        Console.Write("Enter ZIP code: ");
+                        string zip = Console.ReadLine();
+                        Console.Write("Enter phone number: ");
+                        string phoneNumber = Console.ReadLine();
+                        Console.Write("Enter email: ");
+                        string email = Console.ReadLine();
+
+
+                        Contact newContact = new Contact
+                        {
+                            FirstName = firstName,
+                            LastName = lastName,
+                            Address = address,
+                            City = city,
+                            State = state,
+                            Zip = zip,
+                            PhoneNumber = phoneNumber,
+                            Email = email
+                        };
+
+                        book.AddContact(newContact);
+                        break;
+                    case "2":
+                        book.SortContactsByName();
+                        Console.WriteLine(book.ToString());
+                        break;
                     default:
                         Console.WriteLine("Invalid option. Please try again.");
                         break;

@@ -110,5 +110,22 @@ namespace TotalAddressBook
         {
             return contacts.Where(contact => contact.State.Equals(state, StringComparison.OrdinalIgnoreCase));
         }
+
+        public void SortContactsByName()
+        {
+            contacts = contacts.OrderBy(contact => contact.LastName)
+                               .ThenBy(contact => contact.FirstName)
+                               .ToList();
+        }
+
+        public override string ToString()
+        {
+            string addressBookString = "Address Book:\n";
+            foreach (Contact contact in contacts)
+            {
+                addressBookString += contact.ToString();
+            }
+            return addressBookString;
+        }
     }
 }
