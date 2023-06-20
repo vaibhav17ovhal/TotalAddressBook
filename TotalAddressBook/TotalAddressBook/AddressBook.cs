@@ -16,15 +16,7 @@ namespace TotalAddressBook
         }
         public void AddContact(Contact contact)
         {
-            if (contacts.Contains(contact))
-            {
-                Console.WriteLine($"Contact '{contact.FirstName} {contact.LastName}' already exists in the Address Book.");
-            }
-            else
-            {
-                contacts.Add(contact);
-                Console.WriteLine($"Contact '{contact.FirstName} {contact.LastName}' added to the Address Book.");
-            }
+            contacts.Add(contact);
         }
 
         public void DisplayContacts()
@@ -117,19 +109,48 @@ namespace TotalAddressBook
                                .ThenBy(contact => contact.FirstName)
                                .ToList();
         }
-        public void SortContactsByCity()
+        public void SaveAddressBookToFile(string fileName)
         {
-            contacts = contacts.OrderBy(contact => contact.City).ToList();
+            using (StreamWriter writer = new StreamWriter(fileName))
+            {
+                foreach (Contact contact in contacts)
+                {
+                    writer.WriteLine($"{contact.FirstName},{contact.LastName},{contact.Address},{contact.City},{contact.State},{contact.Zip},{contact.PhoneNumber},{contact.Email}");
+                }
+            }
         }
-
-        public void SortContactsByState()
+        public void LoadAddressBookFromFile(string fileName)
         {
-            contacts = contacts.OrderBy(contact => contact.State).ToList();
-        }
+            if (File.Exists(fileName))
+            {
+                contacts.Clear();
 
-        public void SortContactsByZip()
-        {
-            contacts = contacts.OrderBy(contact => contact.Zip).ToList();
+                using (StreamReader reader = new StreamReader(fileName))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        string[] contactData = line.Split(',');
+
+                        Contact contact = new Contact
+                        {
+                            FirstName = contactData[0],
+                            LastName = contactData[1],
+                            Address = contactData[2],
+                            City = contactData[3],
+                            State = contactData[4],
+                            Zip = contactData[5],
+                            PhoneNumber = contactData[6],
+                            Email = contactData[7]
+                        };
+                        contacts.Add(contact);
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine($"File {fileName} does not exist.");
+            }
         }
 
 

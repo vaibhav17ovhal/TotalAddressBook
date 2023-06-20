@@ -11,6 +11,7 @@ namespace TotalAddressBook
             //AddressBookSystem addressBookSystem = new AddressBookSystem();
 
             AddressBook book = new AddressBook();
+            string fileName = "book.txt";
 
             Console.WriteLine("Address Book System");
             /*
@@ -115,9 +116,9 @@ namespace TotalAddressBook
             {
                 Console.WriteLine("\nEnter an option:");
                 Console.WriteLine("1. Add a contact");
-                Console.WriteLine("2. Display contacts sorted by City");
-                Console.WriteLine("3. Display contacts sorted by State");
-                Console.WriteLine("4. Display contacts sorted by Zip");
+                Console.WriteLine("2. Display contacts sorted by name");
+                Console.WriteLine("3. Save address book to file");
+                Console.WriteLine("4. Load address book from file");
 
                 string option = Console.ReadLine();
 
@@ -157,16 +158,16 @@ namespace TotalAddressBook
                         book.AddContact(newContact);
                         break;
                     case "2":
-                        book.SortContactsByCity();
+                        book.SortContactsByName();
                         Console.WriteLine(book.ToString());
                         break;
                     case "3":
-                        book.SortContactsByState();
-                        Console.WriteLine(book.ToString());
+                        book.SaveAddressBookToFile(fileName);
+                        Console.WriteLine("Address book saved to file.");
                         break;
                     case "4":
-                        book.SortContactsByZip();
-                        Console.WriteLine(book.ToString());
+                        book.LoadAddressBookFromFile(fileName);
+                        Console.WriteLine("Address book loaded from file.");
                         break;
                     default:
                         Console.WriteLine("Invalid option. Please try again.");
