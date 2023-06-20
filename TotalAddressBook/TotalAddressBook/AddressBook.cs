@@ -117,6 +117,21 @@ namespace TotalAddressBook
                                .ThenBy(contact => contact.FirstName)
                                .ToList();
         }
+        public void SortContactsByCity()
+        {
+            contacts = contacts.OrderBy(contact => contact.City).ToList();
+        }
+
+        public void SortContactsByState()
+        {
+            contacts = contacts.OrderBy(contact => contact.State).ToList();
+        }
+
+        public void SortContactsByZip()
+        {
+            contacts = contacts.OrderBy(contact => contact.Zip).ToList();
+        }
+
 
         public override string ToString()
         {

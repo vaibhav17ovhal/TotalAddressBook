@@ -115,7 +115,9 @@ namespace TotalAddressBook
             {
                 Console.WriteLine("\nEnter an option:");
                 Console.WriteLine("1. Add a contact");
-                Console.WriteLine("2. Display contacts");
+                Console.WriteLine("2. Display contacts sorted by City");
+                Console.WriteLine("3. Display contacts sorted by State");
+                Console.WriteLine("4. Display contacts sorted by Zip");
 
                 string option = Console.ReadLine();
 
@@ -155,7 +157,15 @@ namespace TotalAddressBook
                         book.AddContact(newContact);
                         break;
                     case "2":
-                        book.SortContactsByName();
+                        book.SortContactsByCity();
+                        Console.WriteLine(book.ToString());
+                        break;
+                    case "3":
+                        book.SortContactsByState();
+                        Console.WriteLine(book.ToString());
+                        break;
+                    case "4":
+                        book.SortContactsByZip();
                         Console.WriteLine(book.ToString());
                         break;
                     default:
