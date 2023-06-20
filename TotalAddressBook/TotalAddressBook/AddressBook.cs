@@ -70,6 +70,21 @@ namespace TotalAddressBook
                 Console.WriteLine("Contact not found.");
             }
         }
+
+        public void DeleteContact(string firstName, string lastName)
+        {
+            Contact contact = FindContact(firstName, lastName);
+
+            if (contact != null)
+            {
+                contacts.Remove(contact);
+                Console.WriteLine("Contact deleted successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Contact not found.");
+            }
+        }
         private Contact FindContact(string firstName , string lastName)
         {
             return contacts.Find(contact =>

@@ -125,6 +125,21 @@ namespace TotalAddressBook
             // Display all contacts again, including the updated contact
             Console.WriteLine("\nAll Contacts after Editing:");
             book.DisplayContacts();
+
+            // Prompt the user to delete a contact
+            Console.WriteLine("\nDelete a contact:");
+            Console.Write("Enter the First Name: ");
+            string deleteFirstName = Console.ReadLine();
+
+            Console.Write("Enter the Last Name: ");
+            string deleteLastName = Console.ReadLine();
+
+            // Delete the contact
+            book.DeleteContact(deleteFirstName, deleteLastName);
+
+            // Display all contacts again, excluding the deleted contact
+            Console.WriteLine("\nAll Contacts after Deletion:");
+            book.DisplayContacts();
         }
     }
 }
