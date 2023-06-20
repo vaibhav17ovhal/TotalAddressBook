@@ -16,14 +16,14 @@ namespace TotalAddressBook
 
             Contact newContact = new Contact
             {
-                FirstName = "Vaibhav",
-                LastName = "Ovhal",
-                Address = "Harsiddhi",
+                FirstName = "Ayushi",
+                LastName = "Dubey",
+                Address = "Juni Indore",
                 City = "Indore",
                 State = "M.P.",
                 Zip = "452007",
-                PhoneNumber = "9340596362",
-                Email = "vaibhavovhal15@gmail.com"
+                PhoneNumber = "7415887847",
+                Email = "ayushidubey80@gmail.com"
             };
 
             // Add the contact to the address book

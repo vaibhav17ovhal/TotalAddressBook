@@ -119,6 +119,45 @@ namespace TotalAddressBook
                 }
             }
         }
+        public List<Contact> GetContactsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            List<Contact> contacts = new List<Contact>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM Contacts WHERE date_added >= @StartDate AND date_added <= @EndDate";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@StartDate", startDate);
+                command.Parameters.AddWithValue("@EndDate", endDate);
+
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Contact contact = new Contact
+                    {
+                        Id = Convert.ToInt32(reader["Id"]),
+                        FirstName = reader["FirstName"].ToString(),
+                        LastName = reader["LastName"].ToString(),
+                        Address = reader["Address"].ToString(),
+                        City = reader["City"].ToString(),
+                        State = reader["State"].ToString(),
+                        Zip = reader["Zip"].ToString(),
+                        PhoneNumber = reader["PhoneNumber"].ToString(),
+                        Email = reader["Email"].ToString(),
+                        DateAdded = (DateTime)reader["date_added"]
+                    };
+
+                    contacts.Add(contact);
+                }
+
+                reader.Close();
+            }
+
+            return contacts;
+        }
+
     }
 }
         
