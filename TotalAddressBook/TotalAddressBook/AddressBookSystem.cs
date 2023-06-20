@@ -9,10 +9,14 @@ namespace TotalAddressBook
     public class AddressBookSystem
     {
         private Dictionary<string, AddressBook> addressBooks;
+        private Dictionary<string, List<Contact>> cityDictionary;
+        private Dictionary<string, List<Contact>> stateDictionary;
 
         public AddressBookSystem()
         {
             addressBooks = new Dictionary<string, AddressBook>();
+            cityDictionary = new Dictionary<string, List<Contact>>();
+            stateDictionary = new Dictionary<string, List<Contact>>();
         }
         public void AddAddressBook(string name)
         {
@@ -51,14 +55,66 @@ namespace TotalAddressBook
             return null;
         }
 
-        public IEnumerable<Contact> SearchContactsInCity(string city)
+        public void AddContact(Contact contact, string addressBookName)
         {
-            return addressBooks.Values.SelectMany(addressBook => addressBook.SearchContactsByCity(city));
+            if (addressBooks.ContainsKey(addressBookName))
+            {
+                AddressBook addressBook = addressBooks[addressBookName];
+                addressBook.AddContact(contact);
+
+                UpdateCityDictionary(contact);
+                UpdateStateDictionary(contact);
+            }
+            else
+            {
+                Console.WriteLine($"Address Book '{addressBookName}' does not exist.");
+            }
         }
 
-        public IEnumerable<Contact> SearchContactsInState(string state)
+        public IEnumerable<Contact> GetContactsByCity(string city)
         {
-            return addressBooks.Values.SelectMany(addressBook => addressBook.SearchContactsByState(state));
+            if (cityDictionary.ContainsKey(city))
+            {
+                return cityDictionary[city];
+            }
+            else
+            {
+                Console.WriteLine($"No contacts found in the city of {city}.");
+                return Enumerable.Empty<Contact>();
+            }
+        }
+
+        public IEnumerable<Contact> GetContactsByState(string state)
+        {
+            if (stateDictionary.ContainsKey(state))
+            {
+                return stateDictionary[state];
+            }
+            else
+            {
+                Console.WriteLine($"No contacts found in the state of {state}.");
+                return Enumerable.Empty<Contact>();
+            }
+        }
+
+        private void UpdateCityDictionary(Contact contact)
+        {
+            if (!cityDictionary.ContainsKey(contact.City))
+            {
+                cityDictionary[contact.City] = new List<Contact>();
+            }
+
+            cityDictionary[contact.City].Add(contact);
+        }
+
+        private void UpdateStateDictionary(Contact contact)
+        {
+            if (!stateDictionary.ContainsKey(contact.State))
+            {
+                stateDictionary[contact.State] = new List<Contact>();
+            }
+
+            stateDictionary[contact.State].Add(contact);
         }
     }
 }

@@ -18,8 +18,8 @@ namespace TotalAddressBook
                 Console.WriteLine("1. Add a new Address Book");
                 Console.WriteLine("2. Display Address Book");
                 Console.WriteLine("3. Add Contact to Address Book");
-                Console.WriteLine("4. Search for contacts in a City");
-                Console.WriteLine("5. Search for contacts in a State");
+                Console.WriteLine("4. View contacts by City");
+                Console.WriteLine("5. View contacts by State");
                 Console.WriteLine("6. Quit");
 
                 string option = Console.ReadLine();
@@ -67,39 +67,23 @@ namespace TotalAddressBook
                         }                        
                         break;
                     case "4":
-                        Console.Write("Enter the City to search for contacts: ");
-                        string searchCity = Console.ReadLine();
-                        IEnumerable<Contact> citySearchResults = addressBookSystem.SearchContactsInCity(searchCity);
+                        Console.Write("Enter the City to view contacts: ");
+                        string viewCity = Console.ReadLine();
+                        IEnumerable<Contact> cityContacts = addressBookSystem.GetContactsByCity(viewCity);
 
-                        if (citySearchResults.Any())
+                        foreach (Contact contact in cityContacts)
                         {
-                            Console.WriteLine($"Contacts in the City of {searchCity}:");
-                            foreach (Contact contact in citySearchResults)
-                            {
-                                Console.WriteLine($"{contact.FirstName} {contact.LastName}");
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine($"No contacts found in the City of {searchCity}.");
+                            Console.WriteLine($"{contact.FirstName} {contact.LastName}");
                         }
                         break;
                     case "5":
-                        Console.Write("Enter the State to search for contacts: ");
-                        string searchState = Console.ReadLine();
-                        IEnumerable<Contact> stateSearchResults = addressBookSystem.SearchContactsInState(searchState);
+                        Console.Write("Enter the State to view contacts: ");
+                        string viewState = Console.ReadLine();
+                        IEnumerable<Contact> stateContacts = addressBookSystem.GetContactsByState(viewState);
 
-                        if (stateSearchResults.Any())
+                        foreach (Contact contact in stateContacts)
                         {
-                            Console.WriteLine($"Contacts in the State of {searchState}:");
-                            foreach (Contact contact in stateSearchResults)
-                            {
-                                Console.WriteLine($"{contact.FirstName} {contact.LastName}");
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine($"No contacts found in the State of {searchState}.");
+                            Console.WriteLine($"{contact.FirstName} {contact.LastName}");
                         }
                         break;
                     case "6":
