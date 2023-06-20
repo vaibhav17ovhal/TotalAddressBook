@@ -12,6 +12,7 @@ namespace TotalAddressBook
                 AddressBookService addressBookService = new AddressBookService(connectionString);
 
             // Add a new contact
+            /*
             Contact newContact = new Contact
             {
                 FirstName = "Ayushi",
@@ -25,10 +26,29 @@ namespace TotalAddressBook
                 DateAdded = DateTime.Now
                 };
                 addressBookService.AddContact(newContact);
-                Console.WriteLine("Contact added successfully!");
+                Console.WriteLine("Contact added successfully!");*/
 
-                // Get contacts by city
-                string city = "New York";
+            // Create a new Contact object
+            Contact newContact1 = new Contact
+            {
+                FirstName = "Vaibhav",
+                LastName = "Ovhal",
+                Address = "Harsiddhi",
+                City = "Indore",
+                State = "M.P.",
+                Zip = "452007",
+                PhoneNumber = "9340596362",
+                Email = "vaibhavovhal15@gmail.com",
+                DateAdded = DateTime.Now
+            };
+
+            // Add the contact to the database
+            addressBookService.AddContactToDatabase(newContact1);
+            Console.WriteLine("Contact added successfully!");
+
+            Console.ReadLine();
+            // Get contacts by city
+            string city = "Indore";
                 List<Contact> contactsByCity = addressBookService.GetContactsByCity(city);
                 Console.WriteLine($"Contacts in {city}:");
                 foreach (Contact contact in contactsByCity)
@@ -37,7 +57,7 @@ namespace TotalAddressBook
                 }
 
                 // Get contacts by state
-                string state = "NY";
+                string state = "M.P.";
                 List<Contact> contactsByState = addressBookService.GetContactsByState(state);
                 Console.WriteLine($"Contacts in {state}:");
                 foreach (Contact contact in contactsByState)
@@ -65,7 +85,7 @@ namespace TotalAddressBook
                 addressBookService.DeleteContact(contactToDelete.Id);
                 Console.WriteLine("Contact deleted successfully!");
 
-                Console.ReadLine();
+                
             }
     }
 }

@@ -262,6 +262,44 @@ namespace TotalAddressBook
 
             return contacts;
         }
+        public void AddContactToDatabase(Contact contact)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Start a new transaction
+                SqlTransaction transaction = connection.BeginTransaction();
+
+                try
+                {
+                    // Insert the contact into the Contacts table
+                    string insertContactQuery = "INSERT INTO Contacts (FirstName, LastName, Address, City, State, Zip, PhoneNumber, Email, DateAdded) " +
+                        "VALUES (@FirstName, @LastName, @Address, @City, @State, @Zip, @PhoneNumber, @Email, @DateAdded)";
+                    SqlCommand insertContactCommand = new SqlCommand(insertContactQuery, connection, transaction);
+                    insertContactCommand.Parameters.AddWithValue("@FirstName", contact.FirstName);
+                    insertContactCommand.Parameters.AddWithValue("@LastName", contact.LastName);
+                    insertContactCommand.Parameters.AddWithValue("@Address", contact.Address);
+                    insertContactCommand.Parameters.AddWithValue("@City", contact.City);
+                    insertContactCommand.Parameters.AddWithValue("@State", contact.State);
+                    insertContactCommand.Parameters.AddWithValue("@Zip", contact.Zip);
+                    insertContactCommand.Parameters.AddWithValue("@PhoneNumber", contact.PhoneNumber);
+                    insertContactCommand.Parameters.AddWithValue("@Email", contact.Email);
+                    insertContactCommand.Parameters.AddWithValue("@DateAdded", contact.DateAdded);
+                    insertContactCommand.ExecuteNonQuery();
+
+                    // Commit the transaction
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    // Rollback the transaction in case of an error
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
+
 
 
 
