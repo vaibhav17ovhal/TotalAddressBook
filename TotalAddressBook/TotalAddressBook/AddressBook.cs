@@ -100,5 +100,15 @@ namespace TotalAddressBook
             contact.LastName.Equals(lastName, StringComparison.OrdinalIgnoreCase)
             );
         }
+
+        public IEnumerable<Contact> SearchContactsByCity(string city)
+        {
+            return contacts.Where(contact => contact.City.Equals(city, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public IEnumerable<Contact> SearchContactsByState(string state)
+        {
+            return contacts.Where(contact => contact.State.Equals(state, StringComparison.OrdinalIgnoreCase));
+        }
     }
 }

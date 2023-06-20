@@ -50,5 +50,15 @@ namespace TotalAddressBook
 
             return null;
         }
+
+        public IEnumerable<Contact> SearchContactsInCity(string city)
+        {
+            return addressBooks.Values.SelectMany(addressBook => addressBook.SearchContactsByCity(city));
+        }
+
+        public IEnumerable<Contact> SearchContactsInState(string state)
+        {
+            return addressBooks.Values.SelectMany(addressBook => addressBook.SearchContactsByState(state));
+        }
     }
 }
