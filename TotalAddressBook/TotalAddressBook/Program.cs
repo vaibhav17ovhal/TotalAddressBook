@@ -20,7 +20,9 @@ namespace TotalAddressBook
                 Console.WriteLine("3. Add Contact to Address Book");
                 Console.WriteLine("4. View contacts by City");
                 Console.WriteLine("5. View contacts by State");
-                Console.WriteLine("6. Quit");
+                Console.WriteLine("6. Count contacts by City");
+                Console.WriteLine("7. Count contacts by State");
+                Console.WriteLine("8. Quit");
 
                 string option = Console.ReadLine();
 
@@ -87,6 +89,18 @@ namespace TotalAddressBook
                         }
                         break;
                     case "6":
+                        Console.Write("Enter the City to get contact count: ");
+                        string city = Console.ReadLine();
+                        int contactCountByCity = addressBookSystem.GetContactCountByCity(city);
+                        Console.WriteLine($"Number of contacts in {city}: {contactCountByCity}");
+                        break;
+                    case "7":
+                        Console.Write("Enter the State to get contact count: ");
+                        string state = Console.ReadLine();
+                        int contactCountByState = addressBookSystem.GetContactCountByState(state);
+                        Console.WriteLine($"Number of contacts in {state}: {contactCountByState}");
+                        break;
+                    case "8":
                         Console.WriteLine("Quitting the program...");
                         return;
                     default:

@@ -116,5 +116,30 @@ namespace TotalAddressBook
 
             stateDictionary[contact.State].Add(contact);
         }
+
+        public int GetContactCountByCity(string city)
+        {
+            if (cityDictionary.ContainsKey(city))
+            {
+                return cityDictionary[city].Count;
+            }
+            else
+            {
+                Console.WriteLine($"No contacts found in the city of {city}.");
+                return 0;
+            }
+        }
+        public int GetContactCountByState(string state)
+        {
+            if (stateDictionary.ContainsKey(state))
+            {
+                return stateDictionary[state].Count;
+            }
+            else
+            {
+                Console.WriteLine($"No contacts found in the state of {state}.");
+                return 0;
+            }
+        }
     }
 }
