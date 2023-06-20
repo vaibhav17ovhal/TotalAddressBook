@@ -12,6 +12,7 @@ namespace TotalAddressBook
 
             AddressBook book = new AddressBook();
             string fileName = "book.txt";
+            string fileName1 = "book.csv";
 
             Console.WriteLine("Address Book System");
             /*
@@ -119,6 +120,8 @@ namespace TotalAddressBook
                 Console.WriteLine("2. Display contacts sorted by name");
                 Console.WriteLine("3. Save address book to file");
                 Console.WriteLine("4. Load address book from file");
+                Console.WriteLine("5. Save address book to CSV");
+                Console.WriteLine("6. Load address book from CSV");
 
                 string option = Console.ReadLine();
 
@@ -168,6 +171,14 @@ namespace TotalAddressBook
                     case "4":
                         book.LoadAddressBookFromFile(fileName);
                         Console.WriteLine("Address book loaded from file.");
+                        break;
+                    case "5":
+                        book.SaveAddressBookToCsv(fileName1);
+                        Console.WriteLine("Address book saved to CSV.");
+                        break;
+                    case "6":
+                        book.LoadAddressBookFromCsv(fileName1);
+                        Console.WriteLine("Address book loaded from CSV.");
                         break;
                     default:
                         Console.WriteLine("Invalid option. Please try again.");

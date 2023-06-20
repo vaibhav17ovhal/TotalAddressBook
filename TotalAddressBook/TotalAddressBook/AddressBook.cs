@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CsvHelper;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -150,6 +152,33 @@ namespace TotalAddressBook
             else
             {
                 Console.WriteLine($"File {fileName} does not exist.");
+            }
+        }
+
+        public void SaveAddressBookToCsv(string fileName1)
+        {
+            using (StreamWriter writer = new StreamWriter(fileName1))
+            using (CsvWriter csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csvWriter.WriteRecords(contacts);
+            }
+        }
+
+        public void LoadAddressBookFromCsv(string fileName1)
+        {
+            if (File.Exists(fileName1))
+            {
+                contacts.Clear();
+
+                using (StreamReader reader = new StreamReader(fileName1))
+                using (CsvReader csvReader = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    contacts = csvReader.GetRecords<Contact>().ToList();
+                }
+            }
+            else
+            {
+                Console.WriteLine($"File {fileName1} does not exist.");
             }
         }
 
