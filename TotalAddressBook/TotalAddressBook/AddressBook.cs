@@ -156,6 +156,7 @@ namespace TotalAddressBook
 
                         Contact contact = new Contact
                         {
+                            
                             FirstName = contactData[0],
                             LastName = contactData[1],
                             Address = contactData[2],
